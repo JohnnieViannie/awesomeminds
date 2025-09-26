@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { WhatWeDo } from "@/components/WhatWeDo";
 import { HowWeDo } from "@/components/HowWeDo";
@@ -9,6 +10,7 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background font-body">
+      <Navigation />
       <HeroSection />
       <WhatWeDo />
       <HowWeDo />
