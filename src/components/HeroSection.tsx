@@ -4,9 +4,9 @@ import { ArrowRight, Users, Heart, Sparkles } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-hero overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-hero overflow-hidden">
       {/* Background overlay */}
-      <div className="absolute inset-0 bg-primary/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-accent/30" />
       
       {/* Content */}
       <div className="relative container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between min-h-screen">
@@ -63,7 +63,7 @@ export function HeroSection() {
         
         <div className="flex-1 mt-12 lg:mt-0">
           <div className="relative">
-            <div className="absolute -inset-4 bg-accent rounded-3xl opacity-20 blur-2xl" />
+            <div className="absolute -inset-4 bg-gradient-accent rounded-3xl opacity-20 blur-2xl" />
             <img 
               src={heroImage} 
               alt="Youth community engaged in mental health activities"
