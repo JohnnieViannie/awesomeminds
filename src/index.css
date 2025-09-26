@@ -44,10 +44,9 @@ Teal (trust), Orange (energy), White (clarity) with proper gradients and effects
     --ring: 176 61% 45%;
 
     /* Design System Extensions */
-    --gradient-primary: linear-gradient(135deg, hsl(176 61% 45%), hsl(176 61% 55%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 60%), hsl(25 95% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(176 61% 45%) 0%, hsl(25 95% 60%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(176 15% 98%));
+    --hero-bg: 176 61% 45%;
+    --accent-bg: 25 95% 60%;
+    --subtle-bg: 176 15% 98%;
     
     --shadow-soft: 0 4px 20px hsl(176 61% 45% / 0.1);
     --shadow-medium: 0 8px 30px hsl(176 61% 45% / 0.15);
