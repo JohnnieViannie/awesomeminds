@@ -205,7 +205,7 @@ export default function Contact() {
                 placeholder="Enter your email"
                 className="bg-accent-foreground/10 border-accent-foreground/20 text-accent-foreground placeholder:text-accent-foreground/60"
               />
-              <Button variant="outline_light">
+              <Button variant="outline">
                 Subscribe
               </Button>
             </div>

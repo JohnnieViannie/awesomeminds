@@ -260,7 +260,7 @@ export default function Portfolio() {
               <p className="text-lg opacity-90 mb-6">
                 Across all initiatives — cafés, digital platforms, school programs, and advisory work — our goal is equitable mental health support where young people feel safe to heal, learn, connect, and thrive.
               </p>
-              <Button variant="outline_light" size="lg">
+              <Button variant="outline" size="lg">
                 Have we impacted your life or organization? Share your story
                 <ArrowRight className="w-5 h-5" />
               </Button>
