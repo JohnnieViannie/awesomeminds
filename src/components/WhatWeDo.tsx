@@ -3,46 +3,40 @@ import { Card, CardContent } from "@/components/ui/card";
 import wellnessCafeImage from "@/assets/wellness-cafe.jpg";
 import keepChattyImage from "@/assets/keepchatty-app.jpg";
 import amsStudioImage from "@/assets/ams-studio.jpg";
-import { Coffee, MessageSquare, Lightbulb, ArrowRight } from "lucide-react";
+import { Coffee, MessageSquare, Users, ArrowRight } from "lucide-react";
 
 const services = [
   {
-    title: "Wellness Café",
-    subtitle: "A stigma-free, lifestyle-driven hub",
-    description: "For youth to connect, talk, and recharge in a safe, creative environment.",
+    title: "Awe-some Café & Creative Hub",
+    subtitle: "A lifestyle-integrated, safe space",
+    description: "to hang out, explore art, dance, play, eat healthy, and join workshops",
     image: wellnessCafeImage,
     icon: Coffee,
     features: [
-      "Peer sessions & mentorship circles",
-      "Art & creativity workshops", 
-      "Community events & wellness challenges",
-      "All five senses wellbeing approach"
+      "Peer sessions, creativity challenges, and community events that don't scream 'mental health support'",
+      "Engage all five senses while connecting with others and learning about your wellbeing"
     ]
   },
   {
-    title: "AMS Studio",
-    subtitle: "Consultancy + innovation space",
-    description: "For NGOs, funders, startups, and businesses to design and scale bold mental health projects.",
-    image: amsStudioImage,
-    icon: Lightbulb,
-    features: [
-      "Human-centered design workshops",
-      "Project management & consultancy",
-      "Incubation & innovation support",
-      "Finance & control systems"
-    ]
-  },
-  {
-    title: "KeepChatty",
-    subtitle: "Digital mental health platform",
-    description: "Co-created with youth (13–30), making personalized support cool, relatable, and accessible.",
+    title: "KeepChatty Digital Platform",
+    subtitle: "Safe, stigma-free online space",
+    description: "Chat with peers or mental health professionals in a safe, stigma-free online space",
     image: keepChattyImage,
     icon: MessageSquare,
     features: [
-      "Chat with peers & professionals",
-      "Personalized tips & guidance",
-      "Accessible anytime, anywhere",
-      "Youth-friendly & stigma-free"
+      "Personalized tools, tips, and guidance for coping, self-care, and wellbeing",
+      "Access support anytime, anywhere — all from your phone"
+    ]
+  },
+  {
+    title: "Youth Programs & Engagement",
+    subtitle: "School and community sessions",
+    description: "that make mental health relatable, interactive, and practical",
+    image: amsStudioImage,
+    icon: Users,
+    features: [
+      "Peer groups, mentorship, and games to help you practice self-care and build resilience",
+      "Learn life skills and mental wellness through hands-on, fun experiences"
     ]
   }
 ];
@@ -53,10 +47,16 @@ export function WhatWeDo() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">
-            The Playground <span className="text-accent">(What We Do)</span>
+            The Playground <span className="text-accent"> —What We Do</span>
           </h2>
           <p className="font-body text-xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-            This is where mental health meets lifestyle, innovation, and impact.
+            Where Mental Health Meets Real Life
+          </p>
+          <p className="font-body text-lg text-muted-foreground mb-6 max-w-3xl mx-auto">
+            We dare to make complex mental health simple. And you?
+          </p>
+          <p className="font-body text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
+            At AMS, we help young people heal, learn, connect, and thrive. Our spaces, programs, and digital tools are designed to make mental health fun, stigma-free, and practical, fitting naturally into everyday life.
           </p>
           <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 inline-block">
             <p className="font-heading text-lg font-semibold text-primary">
@@ -71,8 +71,8 @@ export function WhatWeDo() {
             return (
               <Card key={index} className="group overflow-hidden border-0 shadow-soft hover:shadow-strong transition-smooth bg-card/80 backdrop-blur-sm">
                 <div className="relative">
-                  <img 
-                    src={service.image} 
+                  <img
+                    src={service.image}
                     alt={service.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-smooth"
                   />
@@ -80,7 +80,7 @@ export function WhatWeDo() {
                     <Icon className="w-6 h-6" />
                   </div>
                 </div>
-                
+
                 <CardContent className="p-6">
                   <h3 className="font-heading font-bold text-2xl text-foreground mb-2">
                     {service.title}
@@ -89,7 +89,7 @@ export function WhatWeDo() {
                   <p className="font-body text-muted-foreground mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  
+
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -98,15 +98,21 @@ export function WhatWeDo() {
                       </li>
                     ))}
                   </ul>
-                  
-                  <Button variant="outline" className="w-full group">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
                 </CardContent>
               </Card>
             );
           })}
+        </div>
+
+        <div className="text-center mb-16">
+          <div className="bg-accent/10 border border-accent/20 rounded-2xl p-8 max-w-4xl mx-auto">
+            <h3 className="font-heading font-bold text-2xl text-foreground mb-4">
+              Our Aim
+            </h3>
+            <p className="font-body text-lg text-muted-foreground">
+              Every young person has access to better mental health support that fits their life, sparks real-world connection, and inspires healing, learning, and thriving.
+            </p>
+          </div>
         </div>
 
         <div className="text-center">
