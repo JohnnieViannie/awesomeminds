@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, Lightbulb, BarChart3, Globe, GraduationCap, DollarSign, ArrowRight, Users, Palette, Gamepad2 } from "lucide-react";
 import wellnessCafeImage from "@/assets/wellness-cafe.jpg";
 
-export default function Expertise() {
+export default function Superpower() {
   return (
     <div className="min-h-screen bg-background font-body">
       <Navigation />

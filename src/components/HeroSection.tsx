@@ -46,9 +46,10 @@ export function HeroSection() {
           <h1 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-gray-900 mb-4 sm:mb-6 leading-tight">
             <span className="animate-fade-in-up delay-200 inline-block">We dare to make{" "}</span>
             <span className="relative inline-block text-teal-600 animate-fade-in-up delay-300">
-              complex things simple
+              complex mental health simple
               <span className="absolute -bottom-2 sm:-bottom-3 lg:-bottom-4 left-0 w-full h-2 sm:h-3 lg:h-4 bg-accent transform -rotate-2 transition-all duration-500 hover:scale-110 hover:rotate-2" />
             </span>
+            <span className="animate-fade-in-up delay-400 inline-block">. And you?</span>
           </h1>
 
           <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 leading-relaxed max-w-full sm:max-w-xl mx-auto lg:mx-0 animate-fade-in-up delay-400">
@@ -58,7 +59,7 @@ export function HeroSection() {
 
           <div className="relative bg-white border-l-4 sm:border-l-8 border-teal-600 p-3 sm:p-4 mb-6 sm:mb-8 max-w-full sm:max-w-lg mx-auto lg:mx-0 shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 animate-fade-in-up delay-500">
             <p className="font-heading text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-800 italic">
-              "Mental health made simple, relatable, and for you" —Impact always.
+              "Mental health made simple, relatable, practical and for you."
             </p>
             <div className="absolute -top-2 sm:-top-3 lg:-top-4 -left-2 sm:-left-3 lg:-left-4 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-amber-400 rounded-full hover:scale-150 transition-transform duration-500" />
           </div>
@@ -69,7 +70,7 @@ export function HeroSection() {
               size="lg"
               className="bg-teal-700 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:bg-teal-800 group transition-all duration-300 animate-fade-in-up delay-600 w-full sm:w-auto"
             >
-              Explore Our Vision
+              Explore Our World
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:scale-110 transition-transform duration-300" />
             </Button>
             <Button
@@ -77,7 +78,7 @@ export function HeroSection() {
               size="lg"
               className="border-2 border-teal-700 text-teal-700 font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:bg-teal-50 hover:text-teal-800 transition-all duration-300 animate-fade-in-up delay-700 w-full sm:w-auto"
             >
-              Join Our Journey
+              Join the Crew
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
           </div>

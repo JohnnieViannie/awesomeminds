@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
 	{ name: "Home", path: "/" },
-	{ name: "About", path: "/about" },
-	{ name: "Our Work", path: "/work" },
-	{ name: "Approach", path: "/approach" },
-	{ name: "Expertise", path: "/expertise" },
-	{ name: "Portfolio", path: "/portfolio" },
-	{ name: "Contact", path: "/contact" },
+	{ name: "The Playground", path: "/playground" },
+	{ name: "The Blueprint", path: "/blueprint" },
+	{ name: "Our Superpower", path: "/superpower" },
+	{ name: "The Studio", path: "/studio" },
+	{ name: "The People", path: "/people" },
+	{ name: "Let's Talk", path: "/contact" },
 ];
 
 export function Navigation() {

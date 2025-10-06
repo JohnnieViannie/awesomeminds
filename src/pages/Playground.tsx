@@ -5,7 +5,7 @@ import { Palette, Smartphone, Users, ArrowRight } from "lucide-react";
 import wellnessCafeImage from "@/assets/wellness-cafe.jpg";
 import keepChattyImage from "@/assets/keepchatty-app.jpg";
 
-export default function Work() {
+export default function Playground() {
   return (
     <div className="min-h-screen bg-background font-body">
       <Navigation />
@@ -15,7 +15,7 @@ export default function Work() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-heading font-bold text-4xl md:text-6xl mb-6">
-              What We Do
+              The Playground
             </h1>
             <p className="text-xl md:text-2xl opacity-90 leading-relaxed mb-8">
               We dare to make complex mental health simple. And you?

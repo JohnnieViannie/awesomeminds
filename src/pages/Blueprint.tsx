@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Ear, Lightbulb, Rocket, ArrowRight, Check } from "lucide-react";
 
-export default function Approach() {
+export default function Blueprint() {
   return (
     <div className="min-h-screen bg-background font-body">
       <Navigation />

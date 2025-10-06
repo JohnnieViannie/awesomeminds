@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, MessageCircle, Users, Heart, Building, Smartphone, TrendingUp, ArrowRight, Star } from "lucide-react";
 
-export default function Portfolio() {
+export default function Studio() {
   return (
     <div className="min-h-screen bg-background font-body">
       <Navigation />
@@ -13,7 +13,7 @@ export default function Portfolio() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-heading font-bold text-4xl md:text-6xl mb-6">
-              Our Portfolio
+              The Studio
             </h1>
             <p className="text-xl md:text-2xl opacity-90 leading-relaxed mb-8">
               Real Impact, Lasting Change
