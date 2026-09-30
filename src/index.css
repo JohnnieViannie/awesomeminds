@@ -2,57 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* AMS Design System - Mental Health Innovation Studio
-Teal (trust), Orange (energy), White (clarity) with proper gradients and effects
+/* AMS Design System — Connection by Design
+   Palette from public/logo.png: blue (primary), plum, coral, pink
 */
 
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 210 15% 15%;
+    --background: 0 0% 100%;
+    --foreground: 205 40% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 15% 15%;
+    --card-foreground: 205 40% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 15% 15%;
+    --popover-foreground: 205 40% 10%;
 
-    /* Primary: Teal - Trust & Mental Health */
-    --primary: 176 61% 45%;
-    --primary-light: 176 61% 65%;
-    --primary-dark: 176 61% 35%;
+    /* Primary: logo blue #0878B8 */
+    --primary: 202 92% 38%;
+    --primary-light: 202 80% 52%;
+    --primary-dark: 202 92% 28%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Soft teal variations */
-    --secondary: 176 30% 95%;
-    --secondary-foreground: 176 61% 25%;
+    /* Secondary: pale pink wash (logo pink) */
+    --secondary: 338 80% 96%;
+    --secondary-foreground: 300 50% 28%;
 
-    --muted: 176 15% 96%;
-    --muted-foreground: 210 15% 55%;
+    --muted: 202 30% 96%;
+    --muted-foreground: 205 12% 40%;
 
-    /* Accent: Orange - Energy & Innovation */
-    --accent: 25 95% 60%;
-    --accent-light: 25 95% 70%;
-    --accent-dark: 25 95% 50%;
+    /* Accent: logo coral #F04830 */
+    --accent: 8 86% 56%;
+    --accent-light: 8 86% 70%;
+    --accent-dark: 8 80% 46%;
     --accent-foreground: 0 0% 100%;
+
+    /* Supporting logo colours */
+    --plum: 300 50% 31%;
+    --cobalt: 202 92% 38%;
+    --pink: 338 80% 85%;
+    --cyan: 190 55% 62%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 176 15% 90%;
-    --input: 176 15% 95%;
-    --ring: 176 61% 45%;
+    --border: 202 20% 88%;
+    --input: 202 20% 94%;
+    --ring: 202 92% 38%;
 
-    /* Design System Extensions */
-    --gradient-primary: linear-gradient(135deg, hsl(176 61% 45%), hsl(176 61% 55%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 60%), hsl(25 95% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(176 61% 45%) 0%, hsl(25 95% 60%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(176 15% 98%));
-    
-    --shadow-soft: 0 4px 20px hsl(176 61% 45% / 0.1);
-    --shadow-medium: 0 8px 30px hsl(176 61% 45% / 0.15);
-    --shadow-strong: 0 20px 40px hsl(176 61% 45% / 0.2);
-    --shadow-glow: 0 0 40px hsl(25 95% 60% / 0.3);
+    --gradient-primary: linear-gradient(135deg, hsl(202 92% 38%), hsl(300 50% 31%));
+    --gradient-accent: linear-gradient(135deg, hsl(8 86% 56%), hsl(338 80% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(202 92% 38%) 0%, hsl(300 50% 31%) 55%, hsl(8 86% 56%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(202 80% 97%));
+
+    --shadow-soft: 0 4px 20px hsl(202 92% 20% / 0.1);
+    --shadow-medium: 0 8px 30px hsl(202 92% 20% / 0.14);
+    --shadow-strong: 0 20px 40px hsl(202 92% 20% / 0.18);
+    --shadow-glow: 0 0 40px hsl(8 86% 56% / 0.28);
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -60,58 +65,35 @@ Teal (trust), Orange (energy), White (clarity) with proper gradients and effects
     --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-primary: 202 92% 38%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
+    --sidebar-accent: 202 80% 95%;
+    --sidebar-accent-foreground: 202 92% 26%;
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 202 92% 38%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 270 20% 8%;
+    --foreground: 40 20% 98%;
+    --card: 270 18% 10%;
+    --card-foreground: 40 20% 98%;
+    --popover: 270 18% 10%;
+    --popover-foreground: 40 20% 98%;
+    --primary: 202 80% 58%;
+    --primary-foreground: 270 20% 8%;
+    --secondary: 202 30% 16%;
+    --secondary-foreground: 40 20% 98%;
+    --muted: 270 15% 16%;
+    --muted-foreground: 270 10% 70%;
+    --accent: 12 85% 62%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 270 15% 18%;
+    --input: 270 15% 18%;
+    --ring: 202 80% 58%;
   }
 }
 
@@ -121,6 +103,133 @@ Teal (trust), Orange (energy), White (clarity) with proper gradients and effects
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer components {
+  .pattern-bar {
+    height: 8px;
+    width: 100%;
+    max-width: 12rem;
+    border-radius: 999px;
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(202 92% 38%) 0 10px,
+      hsl(300 50% 31%) 10px 20px,
+      hsl(8 86% 56%) 20px 30px,
+      hsl(338 80% 82%) 30px 40px
+    );
+  }
+
+  .bauhaus-rings {
+    background: repeating-radial-gradient(
+      circle,
+      hsl(var(--accent)) 0 12px,
+      hsl(var(--pink)) 12px 20px
+    );
+  }
+
+  .bauhaus-rings-blue {
+    background: repeating-radial-gradient(
+      circle,
+      hsl(var(--cobalt)) 0 10px,
+      hsl(var(--plum)) 10px 18px
+    );
+  }
+
+  .bauhaus-stripes-coral {
+    background: repeating-linear-gradient(
+      -45deg,
+      hsl(var(--accent)) 0 6px,
+      hsl(var(--pink)) 6px 12px
+    );
+  }
+
+  .bauhaus-stripes {
+    background: repeating-linear-gradient(
+      45deg,
+      hsl(var(--cobalt)) 0 6px,
+      #fff 6px 12px
+    );
+  }
+
+  .halftone-dots {
+    background-image: radial-gradient(circle, hsl(var(--plum) / 0.28) 2px, transparent 2.5px);
+    background-size: 12px 12px;
+    -webkit-mask-image: radial-gradient(ellipse at 40% 45%, #000 20%, transparent 70%);
+    mask-image: radial-gradient(ellipse at 40% 45%, #000 20%, transparent 70%);
+  }
+
+  /* Alternating coral rays, masked to an outer ring */
+  .bauhaus-sunburst {
+    background: repeating-conic-gradient(hsl(var(--accent)) 0 7.5deg, transparent 7.5deg 15deg);
+    -webkit-mask-image: radial-gradient(circle closest-side, transparent 84%, #000 85%);
+    mask-image: radial-gradient(circle closest-side, transparent 84%, #000 85%);
+  }
+
+  .pattern-bar-full {
+    height: 6px;
+    width: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(202 92% 38%) 0 12px,
+      hsl(300 50% 31%) 12px 24px,
+      hsl(8 86% 56%) 24px 36px,
+      hsl(338 80% 82%) 36px 48px
+    );
+  }
+}
+
+@layer utilities {
+  [data-text-reveal] {
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-text-reveal]:not(.text-reveal-in) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-bauhaus-float {
+      animation: bauhaus-float 6s ease-in-out infinite;
+    }
+
+    .animate-bauhaus-spin {
+      animation: bauhaus-spin 60s linear infinite;
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bauhaus-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(8deg);
+  }
+}
+
+
+@keyframes bauhaus-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

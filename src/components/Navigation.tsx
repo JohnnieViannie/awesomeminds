@@ -1,127 +1,119 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-	{ name: "Home", path: "/" },
-	{ name: "The Playground", path: "/playground" },
-	{ name: "The Blueprint", path: "/blueprint" },
-	{ name: "Our Superpower", path: "/superpower" },
-	{ name: "The Studio", path: "/studio" },
-	{ name: "The People", path: "/people" },
-	{ name: "Let's Talk", path: "/contact" },
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "School of Connection", path: "/school" },
+  { name: "Impact", path: "/impact" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "Be Awesome Space", path: "/be-awesome" },
+  { name: "Ideas", path: "/ideas" },
+];
+
+/* Bauhaus marker shown next to menu items: cycles circle, square, triangle */
+const markers = [
+  "rounded-full bg-accent",
+  "bg-cobalt",
+  "bg-plum [clip-path:polygon(50%_0,100%_100%,0_100%)]",
 ];
 
 export function Navigation() {
-	const [isOpen, setIsOpen] = useState(false);
-	const [isScrolled, setIsScrolled] = useState(false);
-	const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-	// Handle scroll event to toggle background
-	useEffect(() => {
-		const handleScroll = () => {
-			// Change background when scroll position is greater than 0
-			setIsScrolled(window.scrollY > 0);
-		};
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-		// Add scroll event listener
-		window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
-		// Cleanup event listener on component unmount
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+  return (
+    <nav className="fixed top-4 sm:top-5 left-0 right-0 z-50 px-4 sm:px-8 lg:px-10">
+      <div
+        className={cn(
+          "max-w-[1400px] mx-auto pl-2 pr-2 sm:pl-3 rounded-full bg-white transition-shadow duration-300",
+          isScrolled || isOpen ? "shadow-strong" : "shadow-medium"
+        )}
+      >
+        <div className="flex items-center justify-between h-14 gap-4">
+          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+            <img src="/logo.png" alt="Awesome Mind Speaks Logo" className="h-10 w-auto" />
+            <span className="hidden sm:block font-heading font-bold text-lg tracking-tight text-foreground">
+              Awesome Mind Speaks
+            </span>
+          </Link>
 
-	return (
-		<nav
-			className={cn(
-				"fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-border transition-colors duration-300",
-				isScrolled ? "bg-white" : "bg-amber-50"
-			)}
-		>
-			<div className="container mx-auto px-6">
-				<div className="flex items-center justify-between h-16">
-					{/* Logo */}
-					<Link
-						to="/"
-						className="flex items-center gap-2 font-heading font-bold text-xl"
-					>
-						
-						{/* Responsive Logo */}
-						<img
-							src="/logov.png" // Update with your logo path
-							alt="AMS Logo"
-							className="h-8 w-auto md:h-8"
-						/>
-			
-					</Link>
-					{/* Desktop Navigation */}
-					<div className="hidden md:flex items-center gap-8">
-						{navItems.map((item) => (
-							<Link
-								key={item.path}
-								to={item.path}
-								className={cn(
-									"font-body text-sm font-medium transition-colors hover:text-primary",
-									location.pathname === item.path
-										? "text-primary border-b-2 border-primary pb-1"
-										: "text-muted-foreground"
-								)}
-							>
-								{item.name}
-							</Link>
-						))}
-						<Button variant="default" size="sm">
-							Join the Crew
-						</Button>
-					</div>
-					{/* Mobile Menu Button */}
-					<button
-						className="md:hidden p-2"
-						onClick={() => setIsOpen(!isOpen)}
-						aria-label="Toggle menu"
-					>
-						{isOpen ? (
-							<X className="w-6 h-6 text-foreground" />
-						) : (
-							<Menu className="w-6 h-6 text-foreground" />
-						)}
-					</button>
-				</div>
-				{/* Mobile Navigation */}
-				{isOpen && (
-					<div
-						className={cn(
-							"md:hidden border-t border-border transition-colors duration-300",
-							isScrolled ? "bg-white" : "bg-amber-50"
-						)}
-					>
-						<div className="py-4 space-y-4">
-							{navItems.map((item) => (
-								<Link
-									key={item.path}
-									to={item.path}
-									onClick={() => setIsOpen(false)}
-									className={cn(
-										"block px-4 py-2 font-body text-sm font-medium transition-colors hover:text-primary hover:bg-secondary rounded-lg",
-										location.pathname === item.path
-											? "text-primary bg-secondary"
-											: "text-muted-foreground"
-									)}
-								>
-									{item.name}
-								</Link>
-							))}
-							<div className="px-4">
-								<Button variant="default" size="sm" className="w-full">
-									Join the Crew
-								</Button>
-							</div>
-						</div>
-					</div>
-				)}
-			</div>
-		</nav>
-	);
+          <div className="hidden xl:flex items-center gap-7">
+            {navItems.map((item) => {
+              const active = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={cn(
+                    "font-body text-[15px] transition-colors whitespace-nowrap",
+                    active ? "font-bold text-primary" : "font-medium text-foreground hover:text-plum"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button
+              asChild
+              size="sm"
+              className="hidden sm:inline-flex rounded-full h-10 px-6 bg-primary text-primary-foreground hover:bg-primary-dark font-body font-semibold text-[15px]"
+            >
+              <Link to="/get-involved">Get Involved</Link>
+            </Button>
+            <button
+              className="xl:hidden w-10 h-10 rounded-full bg-primary text-primary-foreground grid place-items-center"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className="xl:hidden max-w-[1400px] mx-auto mt-2 rounded-3xl bg-white shadow-strong overflow-hidden animate-fade-up">
+          <div className="p-3 space-y-1">
+            {[...navItems, { name: "Get Involved", path: "/get-involved" }].map((item, i) => {
+              const active = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={cn(
+                    "flex items-center gap-3 px-4 py-3 rounded-2xl font-heading font-semibold",
+                    active ? "bg-secondary text-primary" : "text-foreground/80 hover:bg-secondary"
+                  )}
+                >
+                  <span aria-hidden className={cn("w-3 h-3 shrink-0", markers[i % markers.length])} />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
+          <div aria-hidden className="pattern-bar-full" />
+        </div>
+      )}
+    </nav>
+  );
 }

@@ -1,241 +1,222 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { 
-  Users, 
-  School, 
-  MessageSquare, 
-  Handshake,
-  TrendingUp,
-  Heart,
-  ArrowRight,
-  Quote
-} from "lucide-react";
+import { Users, GraduationCap, Globe, MessageCircle } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const impactStats = [
-  {
-    number: "5000+",
-    label: "Young People Reached",
-    description: "Through programs, workshops, and digital platforms",
-    icon: Users,
-    color: "primary"
-  },
-  {
-    number: "50+", 
-    label: "Schools & Workplaces",
-    description: "Trained on mental health awareness and integration",
-    icon: School,
-    color: "accent"
-  },
-  {
-    number: "20+",
-    label: "National Partnerships",
-    description: "With NGOs, UN agencies, and youth networks",
-    icon: Handshake,
-    color: "primary"
-  },
-  {
-    number: "6+",
-    label: "Policy Dialogues",
-    description: "Shaping policy and amplifying youth voices",
-    icon: TrendingUp,
-    color: "accent"
-  }
-];
+// AnimatedCounter component (reused from AgendaSection)
+function AnimatedCounter({ end, duration = 2000, suffix = "", start = false }: { end: number; duration?: number; suffix?: string; start?: boolean }) {
+  const [count, setCount] = useState(0);
 
-const testimonials = [
-  {
-    quote: "I never thought talking about mental health could feel this normal. The café is my safe space to just be me.",
-    author: "16-year-old student",
-    role: "Wellness Café Participant"
-  },
-  {
-    quote: "KeepChatty lets me chat with someone who actually listens, without feeling judged. It's so easy to use and really helps.",
-    author: "22-year-old university student", 
-    role: "KeepChatty User"
-  },
-  {
-    quote: "The workshops and peer groups taught me how to cope with stress and stay connected with friends. I feel stronger now.",
-    author: "18-year-old community member",
-    role: "Youth Program Participant"
-  },
-  {
-    quote: "AMS made learning about mental health fun. I actually look forward to sessions, and it's changed how I see myself and others.",
-    author: "20-year-old youth leader",
-    role: "Peer Support Champion"
-  }
-];
+  useEffect(() => {
+    if (!start) return; // Only start counting when start is true
 
-const keyImpacts = [
-  "Reduced stigma through lifestyle-driven youth programs",
-  "Scaled access via KeepChatty digital platform", 
-  "Smarter, more efficient funding outcomes for NGOs & donors",
-  "Laying foundations for Uganda's first integrated mental health ecosystem"
-];
+    let startCount = 0;
+    const increment = end / (duration / 16); // 60fps
+    const timer = setInterval(() => {
+      startCount += increment;
+      if (startCount >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.ceil(startCount));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [end, duration, start]);
+
+  return (
+    <span className="inline-block animate-pulse-once">
+      {count.toLocaleString()}{suffix}
+    </span>
+  );
+}
 
 export function Impact() {
+  // State to track visibility of elements
+  const [visibleElements, setVisibleElements] = useState({
+    badge: false,
+    heading: false,
+    subtitle: false,
+    metric1: false,
+    metric2: false,
+    metric3: false,
+    metric4: false,
+  });
+
+  // Refs for elements
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const metric1Ref = useRef<HTMLDivElement>(null);
+  const metric2Ref = useRef<HTMLDivElement>(null);
+  const metric3Ref = useRef<HTMLDivElement>(null);
+  const metric4Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target;
+            setVisibleElements((prev) => ({
+              ...prev,
+              [target.getAttribute("data-section") as keyof typeof visibleElements]: true,
+            }));
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of the element is visible
+    );
+
+    // Observe each element
+    const elements = [
+      { ref: badgeRef, key: "badge" },
+      { ref: headingRef, key: "heading" },
+      { ref: subtitleRef, key: "subtitle" },
+      { ref: metric1Ref, key: "metric1" },
+      { ref: metric2Ref, key: "metric2" },
+      { ref: metric3Ref, key: "metric3" },
+      { ref: metric4Ref, key: "metric4" },
+    ];
+
+    elements.forEach(({ ref, key }) => {
+      if (ref.current) {
+        ref.current.setAttribute("data-section", key);
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      elements.forEach(({ ref }) => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
+  }, []);
+
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 sm:mb-6">
-            Receipts <span className="text-accent">(Impact & Portfolio)</span>
-          </h2>
-          <p className="font-body text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Proof, not promises. We've been on the ground, in schools, communities, and online — and the results speak for themselves.
+    <section className="py-12 sm:py-16 lg:py-24 bg-amber-50 overflow-hidden relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-teal-600 rounded-full opacity-30 animate-pulse-slow -translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 right-0 w-12 h-12 sm:w-20 sm:h-20 lg:w-28 lg:h-28 bg-accent rounded-full opacity-30 animate-pulse-slow translate-x-1/4 translate-y-1/4" />
+
+        {/* Heading */}
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16 relative z-10">
+         
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4 leading-tight">
+              <span className="inline-block">Our  </span>
+              <span className="relative inline-block text-accent ml-2">
+                Impact
+                <span className="absolute -bottom-2 sm:-bottom-3 lg:-bottom-4 left-0 w-full h-2 sm:h-3 lg:h-4 bg-teal-600 transform -rotate-3 transition-all duration-500 hover:scale-110 hover:rotate-3" />
+              </span>
+            </h2>
+          </div>
+         
+          <p
+            ref={subtitleRef}
+            className={`font-body text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 leading-relaxed max-w-full sm:max-w-xl mx-auto transition-all duration-700 ${visibleElements.subtitle ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+          >
+            Discover how AMS is transforming mental health support for young people in Uganda through innovative programs and community engagement.
           </p>
         </div>
 
-        {/* Impact Stats */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
-          {impactStats.map((stat, index) => {
-            const Icon = stat.icon;
-            const isAccent = stat.color === "accent";
-            
-            return (
-              <Card key={index} className="border-0 shadow-soft hover:shadow-medium transition-smooth text-center bg-card">
-                <CardContent className="p-6 sm:p-8">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 ${
-                    isAccent ? 'bg-accent/10' : 'bg-primary/10'
-                  }`}>
-                    <Icon className={`w-6 h-6 sm:w-8 sm:h-8 ${isAccent ? 'text-accent' : 'text-primary'}`} />
-                  </div>
-                  
-                  <div className={`font-heading font-bold text-3xl sm:text-4xl mb-2 ${
-                    isAccent ? 'text-accent' : 'text-primary'
-                  }`}>
-                    {stat.number}
-                  </div>
-                  
-                  <h3 className="font-heading font-semibold text-base sm:text-lg text-foreground mb-2 sm:mb-3">
-                    {stat.label}
-                  </h3>
-                  
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    {stat.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* Key Impact Areas */}
-        <div className="bg-gradient-primary rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 mb-16 sm:mb-20 text-primary-foreground">
-          <h3 className="font-heading font-bold text-xl sm:text-2xl lg:text-3xl text-center mb-6 sm:mb-8">
-            Impact Return: Better outcomes, smarter systems
-          </h3>
-          
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-            {keyImpacts.map((impact, idx) => (
-              <div key={idx} className="flex items-start gap-3 sm:gap-4">
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-accent rounded-full flex-shrink-0 mt-1.5 sm:mt-2" />
-                <span className="font-body text-sm sm:text-base text-primary-foreground/90 leading-relaxed">
-                  {impact}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Testimonials */}
-        <div className="mb-12 sm:mb-16">
-          <h3 className="font-heading font-bold text-xl sm:text-2xl lg:text-3xl text-center text-foreground mb-3 sm:mb-4">
-            But Don't Take Our Word For It…
-          </h3>
-          <p className="font-body text-center text-sm sm:text-base text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
-            Here's what young people actually feel about AMS:
-          </p>
-          
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-soft bg-card relative overflow-hidden">
-                <CardContent className="p-6 sm:p-8">
-                  <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-accent/30 mb-3 sm:mb-4" />
-                  
-                  <blockquote className="font-body text-sm sm:text-base lg:text-lg text-foreground mb-4 sm:mb-6 leading-relaxed italic">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  
-                  <div className="flex items-center gap-2 sm:gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <div className="font-heading font-semibold text-sm sm:text-base text-foreground">
-                        {testimonial.author}
-                      </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* ROI + ROP Section */}
-        <div className="bg-muted/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12">
-          <div className="text-center mb-8 sm:mb-12">
-            <h3 className="font-heading font-bold text-xl sm:text-2xl lg:text-3xl text-foreground mb-4 sm:mb-6">
-              ROI + ROP (Return on Investment + Return on Impact)
-            </h3>
-            <p className="font-body text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-              We know funders and partners want both impact + value.
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
-            <Card className="border-0 shadow-soft bg-primary/5">
-              <CardContent className="p-6 sm:p-8">
-                <h4 className="font-heading font-bold text-xl sm:text-2xl text-primary mb-3 sm:mb-4">ROI</h4>
-                <ul className="space-y-2 sm:space-y-3">
-                  {[
-                    "Transparent financial systems",
-                    "Clear deliverables", 
-                    "Efficient project management"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 sm:gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
-                      <span className="text-xs sm:text-sm text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-0 shadow-soft bg-accent/5">
-              <CardContent className="p-6 sm:p-8">
-                <h4 className="font-heading font-bold text-xl sm:text-2xl text-accent mb-3 sm:mb-4">ROP</h4>
-                <ul className="space-y-2 sm:space-y-3">
-                  {[
-                    "Real stories, measurable outcomes",
-                    "Stigma reduction programs",
-                    "Long-term sustainable change"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 sm:gap-3">
-                      <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
-                      <span className="text-xs sm:text-sm text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="text-center">
-            <div className="bg-foreground/5 border border-foreground/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 inline-block mb-6 sm:mb-8 mx-4">
-              <p className="font-heading text-sm sm:text-base lg:text-xl font-semibold text-foreground">
-                "Your challenge → Our design → Scalable solution → Impact always."
-              </p>
+        {/* Impact Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div
+            ref={metric1Ref}
+            className={`bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 p-6 flex flex-col items-center text-center ${visibleElements.metric1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+          >
+            <div className="relative mb-4 w-full h-32 sm:h-40 lg:h-48 overflow-hidden rounded-2xl">
+              <img
+                src="/img_9.png"
+                alt="Young people engaged in mental health activities"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
             </div>
-            
-            <Button variant="accent" size="lg" className="w-full sm:w-auto">
-              Share Your Story & Inspire Change
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </Button>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-teal-100 rounded-full">
+                <Users className="w-6 h-6 text-teal-600" />
+              </div>
+              <h3 className="font-heading font-bold text-xl text-gray-900">
+                <AnimatedCounter end={5000} suffix="+" start={visibleElements.metric1} />
+              </h3>
+            </div>
+            <p className="text-gray-700 text-base">Young People Engaged</p>
+            <p className="text-gray-500 text-sm mt-1">Through school programs, peer sessions, and creative hubs.</p>
+          </div>
+
+          <div
+            ref={metric2Ref}
+            className={`bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 p-6 flex flex-col items-center text-center ${visibleElements.metric2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+          >
+            <div className="relative mb-4 w-full h-32 sm:h-40 lg:h-48 overflow-hidden rounded-2xl">
+              <img
+                src="/img_10.png"
+                alt="Teachers trained in mental health support"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-yellow-100 rounded-full">
+                <GraduationCap className="w-6 h-6 text-yellow-600" />
+              </div>
+              <h3 className="font-heading font-bold text-xl text-gray-900">
+                <AnimatedCounter end={60} suffix="+" start={visibleElements.metric2} />
+              </h3>
+            </div>
+            <p className="text-gray-700 text-base">Teachers Trained</p>
+            <p className="text-gray-500 text-sm mt-1">On youth mental health support.</p>
+          </div>
+
+          <div
+            ref={metric3Ref}
+            className={`bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 p-6 flex flex-col items-center text-center ${visibleElements.metric3 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+          >
+            <div className="relative mb-4 w-full h-32 sm:h-40 lg:h-48 overflow-hidden rounded-2xl">
+              <img
+                src="/img_12.png"
+                alt="Digital platforms for mental health"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-accent rounded-full">
+                <Globe className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-heading font-bold text-xl text-gray-900">
+                Digital Platforms
+              </h3>
+            </div>
+            <p className="text-gray-700 text-base">Piloted</p>
+            <p className="text-gray-500 text-sm mt-1">Offering personalized, stigma-free support to youth aged 13–30.</p>
+          </div>
+
+          <div
+            ref={metric4Ref}
+            className={`bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 p-6 flex flex-col items-center text-center ${visibleElements.metric4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+          >
+            <div className="relative mb-4 w-full h-32 sm:h-40 lg:h-48 overflow-hidden rounded-2xl">
+              <img
+                src="/img_11.png"
+                alt="Community dialogues on mental health"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-teal-100 rounded-full">
+                <MessageCircle className="w-6 h-6 text-teal-600" />
+              </div>
+              <h3 className="font-heading font-bold text-xl text-gray-900">
+                Community Dialogues
+              </h3>
+            </div>
+            <p className="text-gray-700 text-base">Initiated</p>
+            <p className="text-gray-500 text-sm mt-1">Fostering conversations on mental health.</p>
           </div>
         </div>
       </div>
